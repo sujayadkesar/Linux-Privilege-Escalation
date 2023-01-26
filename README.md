@@ -10,7 +10,7 @@
 
 ## 1 Escalation By ```Kernel Exploits```
 
-⚡Linux Kernel < 2.6.37-rc2 ACPI custom_method Privilege Escalation
+⚡[Linux Kernel < 2.6.37-rc2 ACPI custom_method Privilege Escalation](https://github.com/sujayadkesar/Linux-Privilege-Escalation/blob/main/Kernel_EXPLOITS/kernel_2%2C4%2C20__TO__2%2C4%2C27.c)
 ⚡Linux Kernel 5.8 < 5.16.11 - Local Privilege Escalation (DirtyPipe)
 ⚡Linux Kernel <= 2.2.25, <= 2.4.24 and <= 2.6.2 mremap missing do_munmap return check kernel exploit
 ⚡Linux Kernel 2.4.29 uselib VMA insert race vulnerability
