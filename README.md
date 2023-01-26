@@ -6,7 +6,30 @@
 &nbsp;
 
 ## 📜 Overview
-
+1 [Escalating via Kernel Exploits]()
+2 [Escalation  by File permission & Passwords]()
+ - [ ] OLD PASSWORDS IN /ETC/SECURITY/OPASSWD
+ - [ ]  LAST EDITED FILES
+ - [ ] IN MEMORY PASSWORDS
+ - [ ] FIND SENSITIVE FILES
+ 
+3 [Exploiting SUDO]()
+  - [ ] NOPASSWORD
+  - [ ] LD_PRELOAD
+  - [ ] DOAS
+  - [ ] SUDO INJECT
+  
+4 [GTFOBINS]()
+5 [Wildcard]()
+  - [ ] WRITABLE FILES
+  - [ ] WRITABLE /etc/passwd
+  - [ ] WRITABLE /etc/sudoers
+  
+6 [NFS Root Squashing]()
+7 [Scheduled Tasks]()
+8 [SUID]()
+   - [ ] Find SUID Binaries
+9 [Capabilities]()
 
 ## 1 Escalation By ```Kernel Exploits```
 
