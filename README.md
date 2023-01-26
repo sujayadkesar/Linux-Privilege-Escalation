@@ -1,12 +1,12 @@
 ![Cover-Image](https://user-images.githubusercontent.com/95465072/214883789-1f48e8ab-9de0-4693-b0f2-94f42e433c4f.png)
 
 
-# Linux Privilege Escalation 🦁
+<!-- # Linux Privilege Escalation 🦁 -->
 
 &nbsp;
 
 ## 📜 Overview
-1 [Escalating via Kernel Exploits](https://github.com/sujayadkesar/Linux-Privilege-Escalation#1-escalation-by-kernel-exploits)
+1 [Escalating via Kernel Exploits](https://github.com/sujayadkesar/Linux-Privilege-Escalation#1-escalation-by-kernel-exploits)<br>
 2 [Escalation  by File permission & Passwords](https://github.com/sujayadkesar/Linux-Privilege-Escalation#2-escalation-via-file-permission-and-passwords-)
  - [ ] OLD PASSWORDS IN /ETC/SECURITY/OPASSWD
  - [ ]  LAST EDITED FILES
@@ -19,17 +19,17 @@
   - [ ] DOAS
   - [ ] SUDO INJECT
   
-4 [GTFOBINS]()
-5 [Wildcard]()
+4 [GTFOBINS](https://github.com/sujayadkesar/Linux-Privilege-Escalation#4-gtfobins)
+5 [Wildcard](https://github.com/sujayadkesar/Linux-Privilege-Escalation#5-wildcard)
   - [ ] WRITABLE FILES
   - [ ] WRITABLE /etc/passwd
   - [ ] WRITABLE /etc/sudoers
   
-6 [NFS Root Squashing]()
-7 [Scheduled Tasks]()
-8 [SUID]()
+6 [NFS Root Squashing](https://github.com/sujayadkesar/Linux-Privilege-Escalation#6-nfs-root-squashing)
+7 [Scheduled Tasks](https://github.com/sujayadkesar/Linux-Privilege-Escalation#7-scheduled-tasks)
+8 [SUID](https://github.com/sujayadkesar/Linux-Privilege-Escalation#8-suid)
    - [ ] Find SUID Binaries
-9 [Capabilities]()
+9 [Capabilities](https://github.com/sujayadkesar/Linux-Privilege-Escalation#9-capabilities)
 
 ## 1 Escalation By ```Kernel Exploits```
 
