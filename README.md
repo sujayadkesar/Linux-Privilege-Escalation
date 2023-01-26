@@ -6,14 +6,14 @@
 &nbsp;
 
 ## 📜 Overview
-1 [Escalating via Kernel Exploits]()
-2 [Escalation  by File permission & Passwords]()
+1 [Escalating via Kernel Exploits](https://github.com/sujayadkesar/Linux-Privilege-Escalation#1-escalation-by-kernel-exploits)
+2 [Escalation  by File permission & Passwords](https://github.com/sujayadkesar/Linux-Privilege-Escalation#2-escalation-via-file-permission-and-passwords-)
  - [ ] OLD PASSWORDS IN /ETC/SECURITY/OPASSWD
  - [ ]  LAST EDITED FILES
  - [ ] IN MEMORY PASSWORDS
  - [ ] FIND SENSITIVE FILES
  
-3 [Exploiting SUDO]()
+3 [Exploiting SUDO](https://github.com/sujayadkesar/Linux-Privilege-Escalation#3-escalation-by--sudo)
   - [ ] NOPASSWORD
   - [ ] LD_PRELOAD
   - [ ] DOAS
