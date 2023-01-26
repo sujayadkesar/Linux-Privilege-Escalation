@@ -12,7 +12,7 @@
 
 ⚡[Linux Kernel < 2.6.37-rc2 ACPI custom_method Privilege Escalation](https://github.com/sujayadkesar/Linux-Privilege-Escalation/blob/main/Kernel_EXPLOITS/kernel_2%2C6%2C0__TO___2%2C6%2C36.c)<br>
 ⚡[Linux Kernel 5.8 < 5.16.11 - Local Privilege Escalation (DirtyPipe)](https://github.com/sujayadkesar/Linux-Privilege-Escalation/blob/main/Kernel_EXPLOITS/kernel__5%2C8%2C0__TO__5%2C16%2C11.c)<br>
-⚡[Linux Kernel <= 2.2.25, <= 2.4.24 and <= 2.6.2 mremap missing do_munmap return check kernel exploit](https://github.com/sujayadkesar/Linux-Privilege-Escalation/blob/main/Kernel_EXPLOITS/kernel_2%2C4%2C20__TO__2%2C4%2C27.c)<br>
+⚡[Linux Kernel 2.4.20 To 2.4.27 mremap missing do_munmap return check kernel exploit](https://github.com/sujayadkesar/Linux-Privilege-Escalation/blob/main/Kernel_EXPLOITS/kernel_2%2C4%2C20__TO__2%2C4%2C27.c)<br>
 ⚡[Linux Kernel 2.4.29 uselib VMA insert race vulnerability](https://github.com/sujayadkesar/Linux-Privilege-Escalation/blob/main/Kernel_EXPLOITS/kernel_2%2C4%2C29.c)<br>
 ⚡[Linux Kernel < 2.6.36-rc6 pktcdvd Kernel Memory Disclosure](https://github.com/sujayadkesar/Linux-Privilege-Escalation/blob/main/Kernel_EXPLOITS/kernel_2%2C6%2C0__TO___2%2C6%2C36.c)<br>
 ⚡[Linux Kernel < 2.6.36.2 Econet Privilege Escalation Exploit](https://github.com/sujayadkesar/Linux-Privilege-Escalation/blob/main/Kernel_EXPLOITS/kernel__2%2C6%2C0__TO__2%2C6%2C36.c)<br>
