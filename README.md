@@ -28,8 +28,11 @@
 6 [NFS Root Squashing](https://github.com/sujayadkesar/Linux-Privilege-Escalation#6-nfs-root-squashing)<br>
 7 [Scheduled Tasks](https://github.com/sujayadkesar/Linux-Privilege-Escalation#7-scheduled-tasks)<br>
 8 [SUID](https://github.com/sujayadkesar/Linux-Privilege-Escalation#8-suid)<br>
-   -  Find SUID Binaries <br>
+   - Find SUID Binaries
 9 [Capabilities](https://github.com/sujayadkesar/Linux-Privilege-Escalation#9-capabilities)<br>
+&nbsp;
+&nbsp;
+&nbsp;
 
 ## 1 Escalation By ```Kernel Exploits```
 
